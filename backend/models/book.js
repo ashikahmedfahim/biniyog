@@ -1,40 +1,36 @@
 const { sequelize } = require("../configs/dbConfig");
 const { DataTypes } = require("sequelize");
 
-const User = sequelize.define(
-    "User",
+const Book = sequelize.define(
+    "Book",
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        email: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        password: {
+        author: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        first_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        last_name: {
+        image_url: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         status: {
             type: DataTypes.ENUM,
-            allowNull:false,
+            allowNull: false,
             values: ['active', 'inactive'],
             defaultValue: 'active'
         }
     },
     {
-        tableName: "users",
+        tableName: "books",
         freezeTableName: true,
         underscored: true,
         createdAt: 'created_at',
@@ -44,4 +40,4 @@ const User = sequelize.define(
 );
 // sync force
 // User.sync({ force: true });
-module.exports = User;
+module.exports = Book;
