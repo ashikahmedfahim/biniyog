@@ -19,3 +19,13 @@ module.exports.isValidLoginUserObject = (data) => {
     const { error, value } = schema.validate(data);
     return { error, value };
 };
+
+module.exports.isValidCreateBookObject = (data) => {
+    const schema = Joi.object({
+        title: Joi.string().required(),
+        author: Joi.string().required(),
+        image: Joi.any().required(),
+    });
+    const { error, value } = schema.validate(data);
+    return { error, value };
+};

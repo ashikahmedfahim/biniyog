@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const { connectToDatabase } = require("./configs/dbConfig");
 const { modelService, ExpressError } = require('./utilities');
-const { userRoute } = require('./routes');
+const { userRoute, bookRoute } = require('./routes');
 
 const PORT = process.env.PORT || 3000;
 const STAGE = process.env.STAGE || "dev";
@@ -19,7 +19,9 @@ app.use(cors({
 }));
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.static('public'));
 
+app.use('/books', bookRoute);
 app.use('/users', userRoute);
 
 app.get('/', (req, res) => {

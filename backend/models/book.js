@@ -18,9 +18,18 @@ const Book = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        image_url: {
+        image_name: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        image_url: {
+            type: DataTypes.VIRTUAL,
+            get() {
+                return `${process.env.APP_URL}/${this.image_name}`;
+            },
+            set(value) {
+                throw new Error("Do not try to set the `image_url` value!");
+            }
         },
         status: {
             type: DataTypes.ENUM,
