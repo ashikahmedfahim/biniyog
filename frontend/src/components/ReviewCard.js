@@ -1,7 +1,6 @@
 import { Card, Rating } from 'flowbite-react';
 
 export default function ReviewCard({ review }) {
-    console.log(review.Book.image_url);
     return (
         <Card className='mb-5'>
             <h5 className="">

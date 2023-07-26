@@ -16,8 +16,8 @@ Review.belongsTo(User, { foreignKey: { name: "user_id", allowNull: false } });
 User.hasMany(Comment, { foreignKey: { name: "user_id", allowNull: false }, as: "user_comments" });
 Comment.belongsTo(User, { foreignKey: { name: "user_id", allowNull: false } });
 
-User.belongsToMany(User, { through: "followers", foreignKey: { name: "follower_id", allowNull: false }, as: "user_followers" });
-User.belongsToMany(User, { through: "followers", foreignKey: { name: "followed_id", allowNull: false }, as: "user_followed" });
+User.belongsToMany(User, { through: "followers", foreignKey: { name: "followed_id", allowNull: false }, as: "user_followers" });
+User.belongsToMany(User, { through: "followers", foreignKey: { name: "follower_id", allowNull: false }, as: "user_followed" });
 
 // sequelize.sync();
 
