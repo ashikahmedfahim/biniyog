@@ -32,3 +32,4 @@ npm start
 ```
 /books
 ```
+18. Some screenshots of the application are provided to show the working of the application
