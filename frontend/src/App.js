@@ -11,6 +11,7 @@ import showNotification from './utilities/showNotification';
 import { removeNotification } from './slices/notificationSlice';
 import { useEffect } from 'react';
 import PrivateRoute from './components/PrivateRoute';
+import MyPosts from './pages/MyPosts';
 
 function App() {
   const { notifications } = useSelector(state => state.notification);
@@ -35,6 +36,7 @@ function App() {
       <div className='container mx-auto p-2'>
         <Routes>
           <Route path="/" element={<PrivateRoute><Newsfeed /></PrivateRoute>} />
+          <Route path="/my-posts" element={<PrivateRoute><MyPosts /></PrivateRoute>} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-in" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
