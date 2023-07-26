@@ -79,8 +79,8 @@ export default function NavbarWithDropdown() {
             <Dropdown.Item onClick={goToMyPosts}>
               My Posts
             </Dropdown.Item>
-            <Dropdown.Item>
-              Settings
+            <Dropdown.Item onClick={() => navigate(`/my-follows`)}>
+              My Follows
             </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={logout}>

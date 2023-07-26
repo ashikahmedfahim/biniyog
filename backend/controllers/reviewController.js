@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const { Review, Book, User, Comment } = require("../models");
 const { dataValidator, ExpressError, modelService } = require("../utilities");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 module.exports.addReview = async (req, res) => {
     const { id } = req.params;
@@ -26,10 +26,23 @@ module.exports.addReview = async (req, res) => {
 };
 
 module.exports.getAllReviews = async (req, res) => {
+    const { myReviews } = req.query;
+    const where = {};
+    if (myReviews) {
+        where.user_id = req.user.id;
+    } else {
+        const user = await User.findByPk(req.user.id);
+        const followedUser = await user.getUser_followed({
+            attributes: ['id']
+        });
+        const followedUserIds = followedUser.map(user => user.id);
+        followedUserIds.push(req.user.id);
+        where.user_id = { [Op.in]: followedUserIds };
+    }
     const reviews = await Review.findAndCountAll({
-        // where: {
-
-        // },
+        where: {
+            ...where,
+        },
         ...modelService.queryOptions(req),
         include: [
             {

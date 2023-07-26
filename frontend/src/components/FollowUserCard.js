@@ -6,7 +6,7 @@ import { addNotification } from '../slices/notificationSlice';
 import { setIsUpdateNeeded } from '../slices/followerSlice';
 import { setIsNewReview } from '../slices/reviewSlice';
 
-const FollowUserCard = ({ followAbleUser }) => {
+const FollowUserCard = ({ followAbleUser, isFollowed }) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const dispatch = useDispatch();
 
@@ -14,6 +14,20 @@ const FollowUserCard = ({ followAbleUser }) => {
         try {
             setIsLoading(true);
             const { data: response } = await axiosInstance.post(`/users/${followAbleUser.id}/follow`);
+            dispatch(addNotification({ type: "success", message: response.message }));
+            dispatch(setIsUpdateNeeded(true));
+            dispatch(setIsNewReview(true));
+        } catch (error) {
+            dispatch(addNotification({ type: "error", message: error.response.data.message }));
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const unfollowUser = async () => {
+        try {
+            setIsLoading(true);
+            const { data: response } = await axiosInstance.delete(`/users/${followAbleUser.id}/unfollow`);
             dispatch(addNotification({ type: "success", message: response.message }));
             dispatch(setIsUpdateNeeded(true));
             dispatch(setIsNewReview(true));
@@ -32,12 +46,14 @@ const FollowUserCard = ({ followAbleUser }) => {
                 <div className='flex items-center'>
                     <Button
                         className='w-20'
-                        onClick={followUser}
+                        onClick={isFollowed? unfollowUser : followUser}
                     >
                         {
                             isLoading ?
                                 <Spinner /> :
-                                "Follow"
+                                isFollowed ?
+                                    "Unfollow" :
+                                    "Follow"
                         }
                     </Button>
                 </div>

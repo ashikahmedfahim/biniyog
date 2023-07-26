@@ -12,6 +12,7 @@ import { removeNotification } from './slices/notificationSlice';
 import { useEffect } from 'react';
 import PrivateRoute from './components/PrivateRoute';
 import MyPosts from './pages/MyPosts';
+import MyFollows from './pages/MyFollows';
 
 function App() {
   const { notifications } = useSelector(state => state.notification);
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PrivateRoute><Newsfeed /></PrivateRoute>} />
           <Route path="/my-posts" element={<PrivateRoute><MyPosts /></PrivateRoute>} />
+          <Route path="/my-follows" element={<PrivateRoute><MyFollows /></PrivateRoute>} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-in" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />

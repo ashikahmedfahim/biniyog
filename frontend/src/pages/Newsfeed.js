@@ -66,7 +66,7 @@ const Newsfeed = () => {
                         :
                         !followAbleUsers.length ?
                             <div className='h-20 flex items-center justify-center'>
-                                <p className='text-2xl'>Nothing to Follow</p>
+                                <p className='text-2xl'>No one to Follow</p>
                             </div>
                             :
                             <div className='text-center'>
