@@ -25,10 +25,6 @@ export default function NavbarWithDropdown() {
     }
   };
 
-  const goToMyPosts = () => {
-    navigate(`/my-posts`);
-  };
-
   return (
     <Navbar
       fluid
@@ -76,9 +72,6 @@ export default function NavbarWithDropdown() {
                 {user.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item onClick={goToMyPosts}>
-              My Posts
-            </Dropdown.Item>
             <Dropdown.Item onClick={() => navigate(`/my-follows`)}>
               My Follows
             </Dropdown.Item>

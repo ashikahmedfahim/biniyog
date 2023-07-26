@@ -1,0 +1,8 @@
+PORT  = 5000
+MYSQL_DATABASE = 'biniyog'
+MYSQL_USERNAME = 'root'
+MYSQL_PASSWORD = 'password'
+STAGE = 'dev'
+ACCESS_TOKEN_SECRET = 'abcd'
+REFRESH_TOKEN_SECRET = 'efgh'
+APP_URL = 'http://localhost:5000'

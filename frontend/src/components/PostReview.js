@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { setBooks, setIsBookLoading } from '../slices/bookSlice';
 import axiosInstance from '../axiosInstance';
 import { addNotification } from '../slices/notificationSlice';
+import { setIsNewReview } from '../slices/reviewSlice';
 
 
 export default function PostReview({ openModal, setOpenModal }) {
@@ -39,6 +40,7 @@ export default function PostReview({ openModal, setOpenModal }) {
             formData.rating = rating;
             const { data: response } = await axiosInstance.post(`/books/${bookId}/reviews`, formData);
             dispatch(addNotification({ type: "success", message: response.message }));
+            dispatch(setIsNewReview(true));
         } catch (error) {
             dispatch(addNotification({ type: "error", message: error.response.data.message }));
         } finally {

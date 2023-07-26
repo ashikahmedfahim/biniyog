@@ -1,4 +1,5 @@
 import { Card, Rating } from 'flowbite-react';
+import CommentCard from './CommentCard';
 
 export default function ReviewCard({ review }) {
     return (
@@ -42,6 +43,7 @@ export default function ReviewCard({ review }) {
             <p className="font-normal text-gray-700 dark:text-gray-400">
                 {review.title}
             </p>
+            <CommentCard id={review.id} comments={review.review_comments} />
         </Card>
     )
 }

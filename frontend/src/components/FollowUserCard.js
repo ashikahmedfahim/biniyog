@@ -37,6 +37,7 @@ const FollowUserCard = ({ followAbleUser, isFollowed }) => {
             setIsLoading(false);
         }
     };
+    
     return (
         <Card className='bg-gradient-to-r from-green-400 to-blue-400 mx-2 mb-2'>
             <div className='flex items-center justify-between text-white'>

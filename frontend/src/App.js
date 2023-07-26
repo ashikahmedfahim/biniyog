@@ -37,7 +37,7 @@ function App() {
       <div className='container mx-auto p-2'>
         <Routes>
           <Route path="/" element={<PrivateRoute><Newsfeed /></PrivateRoute>} />
-          <Route path="/my-posts" element={<PrivateRoute><MyPosts /></PrivateRoute>} />
+          {/* <Route path="/my-posts" element={<PrivateRoute><MyPosts /></PrivateRoute>} /> */}
           <Route path="/my-follows" element={<PrivateRoute><MyFollows /></PrivateRoute>} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-in" element={<SignUp />} />

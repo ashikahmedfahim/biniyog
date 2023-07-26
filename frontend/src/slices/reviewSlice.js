@@ -16,6 +16,11 @@ const reviewSlice = createSlice({
             state.count = action.payload.count;
             state.reviews = action.payload.rows;
         },
+        setComments: (state, action) => {
+            const { reviewId, comments } = action.payload;
+            const index = state.reviews.findIndex(review => review.id === reviewId);
+            state.reviews[index].review_comments = comments;
+        },
         setIsNewReview: (state, action) => {
             state.isNewReview = action.payload;
         },
@@ -25,6 +30,6 @@ const reviewSlice = createSlice({
     },
 });
 
-export const { setReviews, setIsNewReview, setIsReviewLoading } = reviewSlice.actions;
+export const { setReviews, setComments, setIsNewReview, setIsReviewLoading } = reviewSlice.actions;
 
 export default reviewSlice.reducer;
